@@ -6,4 +6,6 @@ We propose an adaptive framework to construct a suitable augmentation pool for D
 
 ## 2. Quick Training
 
+Because the utils file is too large, please unzip it before running.
+
     python main.py --cfg="./dfu/configs/Basic.EfficientNet.yaml"
