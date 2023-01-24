@@ -1,0 +1,46 @@
+BASIC:
+ NAME: Basic.BiT
+ LOG_DIR: ./log/
+ 
+ K: 5
+ CLASS_NUM: 4
+ VALID_STEP: 5
+ STEP: 0
+
+ RESUME: False
+ RESUME_PATH: ''
+ RESUME_DATA: ./imgs_path.csv
+
+DATASET:
+ IMG_ROOT: ./DFUC2021_train/images
+ LABEL_ROOT: ./DFUC2021_train/train.csv
+ LABEL_BATCHSIZE: 128
+ UNLABEL_BATCHSIZE: 16
+ AUG: ''
+
+TRAIN_0:
+ EPOCH: 90            # 1000
+ NET_TYPE: BiT101
+ SSL_TYPE: BasicTrain
+ DROUPOUT: 0.0
+ THRESH_WARMUP: False
+ THRESHOLD: 0.95
+
+ LOSS:
+  LOSS_TYPE: CrossEntropy      # 这里可以改
+  WEIGHT: False
+
+ OPTIMIZER:
+  TYPE: SGD                   # SGD
+  WEIGHT_DECAY: 0.0           # 不设置就写0，1e-4没有0好
+  MOMENTUM: 0.9
+  LR_SCHEDULER: 0.001
+
+ SCHEDULER: 
+  TYPE: CosineAnnealingWarmRestarts                          # Custom\MultiStepLR\StepLR\CosineAnnealingLR\CosineAnnealingWarmRestarts，MultiStepLR更快效果也好
+  PARAMETER_1: 3                                             # 2\[30, 60]\2.4\15                 
+  PARAMETER_2: 2                                             # 4\0.1\0.97\0.0001
+
+TEST:
+ IMG_ROOT: ./DFUC2021_test/
+ BATCHSIZE: 128
